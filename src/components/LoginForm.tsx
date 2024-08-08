@@ -23,30 +23,41 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form>
-        <div className="form-group">
-          <label htmlFor="login">Login</label>
-          <Field id="login" name="login" type="text" className="form-control" />
-          <ErrorMessage name="login" component="div" className="form-error" />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <Field
-            id="password"
-            name="password"
-            type="password"
-            className="form-control"
-          />
-          <ErrorMessage
-            name="password"
-            component="div"
-            className="form-error"
-          />
-        </div>
-        <button type="submit" className="form-submit-btn">
-          Submit
-        </button>
-      </Form>
+      {({ isValid, dirty }) => (
+        <Form>
+          <div className="form-group">
+            <label htmlFor="login">Login</label>
+            <Field
+              id="login"
+              name="login"
+              type="text"
+              className="form-control"
+            />
+            <ErrorMessage name="login" component="div" className="form-error" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <Field
+              id="password"
+              name="password"
+              type="password"
+              className="form-control"
+            />
+            <ErrorMessage
+              name="password"
+              component="div"
+              className="form-error"
+            />
+          </div>
+          <button
+            type="submit"
+            className="form-submit-btn"
+            disabled={!isValid || !dirty}
+          >
+            Submit
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 };
